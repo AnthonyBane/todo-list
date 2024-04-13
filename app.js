@@ -14,6 +14,13 @@ function addToDo(event){
     // Prevents form from submitting refreshing the web browser
     event.preventDefault();
 
+    // check if input to todoInput contains any text
+    if (todoInput.value.trim() === ""){
+        displayWarning("To do items must be at least 1 character long.")
+        todoInput.value = "";
+        return
+    }
+
     // New ToDo div element
     const todoDiv = document.createElement('div')
     todoDiv.classList.add('todo-item')
@@ -59,4 +66,8 @@ function completeItem(event){
         const todoItem = target.parentElement;
         todoItem.classList.toggle("complete");
     }
+}
+
+function displayWarning(warning){
+    window.confirm(warning);
 }
